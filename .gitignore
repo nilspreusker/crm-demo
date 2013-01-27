@@ -4,3 +4,12 @@
 *.jar
 *.war
 *.ear
+
+build.properties
+target
+
+.project
+.settings
+.classpath
+
+src/main/webapp/app/.DS_Store
