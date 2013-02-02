@@ -5,7 +5,39 @@
 function CustomerListCtrl($scope, $location, Customer) {
 
   $scope.customers = Customer.query();
-
+  $scope.filteredResults = false;
+  
+  $scope.search = function() {
+    $scope.customers = Customer.query(
+        {
+          searchString: $scope.searchString
+        },
+        function() {
+          $scope.filteredResults = true;
+        }
+    ); 
+  }
+  
+  $scope.clearSearch = function() {
+    $scope.searchString = null;
+    $scope.filteredResults = false;
+    $scope.customers = Customer.query();
+  }
+  
+  $scope.deleteCustomer = function(customerId) {
+    Customer.delete(
+        {
+          id: customerId
+        },
+        function() {
+          if(!!$scope.searchString && !!$scope.filteredResults) {
+            $scope.search();
+          } else {
+            $scope.customers = Customer.query();
+          }
+        });
+  }
+  
 }
 
 function CustomerDetailCtrl($scope, $location, $routeParams, Customer) {

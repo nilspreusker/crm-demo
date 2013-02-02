@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -32,11 +33,11 @@ public class CustomerResource {
   @GET
   @Path("/")
   @Produces(MediaType.APPLICATION_JSON)
-  public Response getCustomers(@QueryParam("firstName") String firstName,
+  public Response getCustomers(@QueryParam("searchString") String searchString,
       @QueryParam("name") String name) {
     List<Customer> customers;
-    if (firstName != null && name != null) {
-      customers = customerService.findCustomer(firstName, name);
+    if (searchString != null) {
+      customers = customerService.findCustomers(searchString);
     } else {
       customers = customerService.findAllCustomers();
     }
@@ -71,6 +72,13 @@ public class CustomerResource {
   public Response updateCustomer(Customer customer) {
     customerService.updateCustomer(customer);
     return Response.status(Status.ACCEPTED).build();
+  }
+
+  @DELETE
+  @Path("/{customerId}")
+  public Response deleteCustomer(@PathParam("customerId") Long customerId) {
+    customerService.deleteCustomer(customerId);
+    return Response.ok().build();
   }
 
 }

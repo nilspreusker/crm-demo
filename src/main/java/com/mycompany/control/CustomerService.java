@@ -31,15 +31,45 @@ public class CustomerService {
     entityManager.merge(customer);
   }
 
-  public List<Customer> findCustomer(String firstName, String lastName) {
+  public List<Customer> findCustomers(String searchString) {
+
+    String[] searchTerms = new String[]{searchString}; 
+    if(searchString.contains(", ")) {
+      searchTerms = searchString.split(", ");
+    } else if (searchString.contains("; ")) {
+      searchTerms = searchString.split("; ");
+    } else if (searchString.contains(",")) {
+      searchTerms = searchString.split(",");
+    } else if (searchString.contains(";")) {
+      searchTerms = searchString.split(";");
+    } else if (searchString.contains(" ")) {
+      searchTerms = searchString.split(" ");
+    }
+
+    String queryString = "SELECT e FROM Customer e where ";
+    
+    int counter = 0;
+    for(String searchTerm : searchTerms) {
+      if(counter++ != 0) {
+        queryString += "or ";
+      }
+      queryString += "e.firstName LIKE '" + searchTerm + "' OR e.lastName LIKE '" + searchTerm + "' ";
+    }
+    
+    System.out.println(queryString);
+    
     TypedQuery<Customer> query = entityManager.createQuery(
-        "SELECT e FROM Customer e where e.firstName LIKE ? AND e.name LIKE ?",
+        queryString,
         Customer.class);
 
-    query.setParameter(1, "%" + firstName + "%");
-    query.setParameter(2, "%" + lastName + "%");
-
     return query.getResultList();
+  }
+  
+  public void deleteCustomer(Long id) {
+    Customer customer = findCustomerById(id);
+    if(customer != null) {
+      entityManager.remove(customer);
+    }
   }
 
 }

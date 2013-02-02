@@ -39,7 +39,6 @@ angular.module('CrmDemo.services', [ 'ngResource' ]).value('Debouncer', {
             update : {
               method : 'PUT'
             }
-
           });
 
       return Customer;
