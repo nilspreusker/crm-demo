@@ -33,9 +33,6 @@ angular.module('CrmDemo.services', [ 'ngResource' ]).value('Debouncer', {
           'http://localhost\\:8080/crm-demo/rest/customer/:id', {
             id : '@id'
           }, {
-            save : {
-              method : 'POST'
-            },
             update : {
               method : 'PUT'
             }

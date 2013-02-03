@@ -1,7 +1,7 @@
 'use strict';
 
 
-// Declare app level module which depends on filters, and services
+// Declare app level module which depends on filters, services and directives
 angular.module('CrmDemo', [ 'CrmDemo.filters', 'CrmDemo.services', 'CrmDemo.directives' ])
         .config([ '$routeProvider', function($routeProvider) {
             $routeProvider.when('/list', {

@@ -32,7 +32,7 @@ public class CustomerResource {
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  public Response getCustomers(@QueryParam("searchString") String searchString,
+  public Response findCustomers(@QueryParam("searchString") String searchString,
       @QueryParam("name") String name) {
     List<Customer> customers;
     if (searchString != null) {
@@ -40,7 +40,7 @@ public class CustomerResource {
     } else {
       customers = customerService.findAllCustomers();
     }
-    return Response.ok().entity(customers).build();
+    return Response.ok(customers).build();
   }
 
   @POST
@@ -54,7 +54,7 @@ public class CustomerResource {
   @GET
   @Path("/{customerId}")
   @Produces(MediaType.APPLICATION_JSON)
-  public Response getCustomer(@PathParam(value = "customerId") String customerId) {
+  public Response findCustomerById(@PathParam(value = "customerId") String customerId) {
     Customer customer = customerService.findCustomerById(Long
         .parseLong(customerId));
 
