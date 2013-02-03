@@ -31,7 +31,6 @@ public class CustomerResource {
   private CustomerService customerService;
 
   @GET
-  @Path("/")
   @Produces(MediaType.APPLICATION_JSON)
   public Response getCustomers(@QueryParam("searchString") String searchString,
       @QueryParam("name") String name) {
@@ -45,7 +44,6 @@ public class CustomerResource {
   }
 
   @POST
-  @Path("/")
   public Response saveCustomer(@Context UriInfo uriInfo, Customer customer)
       throws URISyntaxException {
     customerService.saveCustomer(customer);
