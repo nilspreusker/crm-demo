@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-function CustomerListCtrl($scope, $location, Customer) {
+function CustomerListCtrl($scope, Customer) {
 
   $scope.customers = Customer.query();
   $scope.filteredResults = false;
