@@ -22,25 +22,15 @@ public class Customer {
   @Id
   @GeneratedValue
   private Long id;
-
   private String firstName;
-
   private String lastName;
-
   private String email;
-
   private String phone;
-
   private String fax;
-
   private Sex sex;
-
   private String country;
-
   private Locale locale;
-
   private Date createDate;
-
   @ManyToOne(cascade = { CascadeType.ALL })
   private Company company;
 
@@ -53,7 +43,6 @@ public class Customer {
   public Customer(String firstName, String lastName, String email,
       String phone, String fax, Sex sex, String country, Locale locale,
       Date createDate, Company company) {
-    super();
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;

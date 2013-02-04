@@ -17,7 +17,6 @@ public class Company {
   @Id
   @GeneratedValue
   private Long id;
-
   private String name;
 
   /**
@@ -27,7 +26,6 @@ public class Company {
   }
 
   public Company(String name) {
-    super();
     this.name = name;
   }
 
