@@ -56,10 +56,7 @@ public class CustomerService {
       queryString += "e.firstName LIKE '" + searchTerm + "' OR e.lastName LIKE '" + searchTerm + "' ";
     }
     
-    System.out.println(queryString);
-    
-    TypedQuery<Customer> query = entityManager.createQuery(
-        queryString,
+    TypedQuery<Customer> query = entityManager.createQuery(queryString,
         Customer.class);
 
     return query.getResultList();
