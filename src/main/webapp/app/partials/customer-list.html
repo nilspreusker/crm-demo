@@ -1,43 +1,52 @@
 <!-- partial for the customer overview page, shows a list of customers -->
 
-<div class="row">
-  <div class="span4">
-    <h2>Customer Overview</h2>
-  </div>
-</div>
-<form class="form-search">
-  <input data-ng-model="searchString" type="text" class="input-medium search-query">
-  <button data-ng-click="search()" data-ng-disabled="!searchString" type="submit" class="btn btn-primary">Search</button>
-  <button data-ng-click="clearSearch()" data-ng-disabled="!filteredResults" type="submit" class="btn">Clear</button>
-</form>
-<div class="row">
-  <div class="span12">
-    <table class="table table-striped table-bordered">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Customer name</th>
-          <th>Company</th>
-          <th>Email</th>
-          <th>Fon</th>
-          <th>Created</th>
-          <th colspan="2">Options</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr data-ng-repeat="customer in customers">
-          <td>{{customer.id}}</td>
-          <td>{{customer.firstName}} {{customer.lastName}}</td>
-          <td>{{customer.company.name}}</td>
-          <td>{{customer.email}}</td>
-          <td>{{customer.phone}}</td>
-          <td>{{ customer.createDate | date }}</td>
-          <td>
-            <a href="#/edit/{{customer.id}}" title="edit"><i class="icon-edit"></i></a>
-            <a data-ng-click="deleteCustomer(customer.id)" title="delete"><i class="icon-remove"></i></a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<div class="container">
+    <div class="row">
+        <div class="span4">
+            <h2>Customer Overview</h2>
+        </div>
+    </div>
+    <form class="form-search">
+        <input data-ng-model="searchString" type="text" class="input-medium search-query">
+        <button data-ng-click="search()" data-ng-disabled="!searchString" type="submit" class="btn btn-primary">Search
+        </button>
+        <button data-ng-click="clearSearch()" data-ng-disabled="!filteredResults" type="submit" class="btn">Clear
+        </button>
+    </form>
+    <div class="row">
+        <div class="span12">
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Customer name</th>
+                    <th>Company</th>
+                    <th>Email</th>
+                    <th>Fon</th>
+                    <th>Created</th>
+                    <th colspan="2">Options</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-ng-repeat="customer in customers">
+                    <td>{{customer.id}}</td>
+                    <td>{{customer.firstName}} {{customer.lastName}}</td>
+                    <td>{{customer.company.name}}</td>
+                    <td>{{customer.email}}</td>
+                    <td>{{customer.phone}}</td>
+                    <td>{{ customer.createDate | date }}</td>
+                    <td>
+                        <a href="#/edit/{{customer.id}}" title="edit"><i class="icon-edit"></i></a>
+                        <a data-ng-click="deleteCustomer(customer.id)" title="delete"><i class="icon-remove"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <hr/>
+    <div>
+        CRM Demo: v<span app-version></span>
+    </div>
 </div>

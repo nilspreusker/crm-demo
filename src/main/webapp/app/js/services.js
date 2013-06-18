@@ -2,41 +2,62 @@
 
 /* Services */
 
-angular.module('CrmDemo.services', [ 'ngResource' ]).value('Debouncer', {
-  /**
-   * Debounce a function call, making it callable an arbitrary number of times
-   * before it is actually executed once.
-   * 
-   * @param {function()}
-   *          func The function to debounce.
-   * @param {number}
-   *          wait The debounce timeout.
-   * @return {function()} A function that can be called an arbitrary number of
-   *         times within the given time.
-   */
-  debounce : function(func, wait) {
-    var timer;
-    return function() {
-      var context = this, args = arguments;
-      clearTimeout(timer);
-      timer = setTimeout(function() {
-        timer = null;
-        func.apply(context, args);
-      }, wait);
-    };
-  }
-}).value('version', '0.1').factory(
+
+var crmDemoServices = angular.module('CrmDemo.services', [ 'ngResource' ]).value('Debouncer', {
+    /**
+     * Debounce a function call, making it callable an arbitrary number of times
+     * before it is actually executed once.
+     *
+     * @param {function()}
+     *          func The function to debounce.
+     * @param {number}
+     *          wait The debounce timeout.
+     * @return {function()} A function that can be called an arbitrary number of
+     *         times within the given time.
+     */
+    debounce: function (func, wait) {
+        var timer;
+        return function () {
+            var context = this, args = arguments;
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+                timer = null;
+                func.apply(context, args);
+            }, wait);
+        };
+    }
+}).
+    value('version', '0.1').
+    factory(
     'Customer',
-    function($resource) {
+    function ($resource) {
 
-      var Customer = $resource(
-          'http://localhost\\:8080/crm-demo/rest/customer/:id', {
-            id : '@id'
-          }, {
-            update : {
-              method : 'PUT'
-            }
-          });
+        var Customer = $resource(
+            'http://localhost\\:8080/crm-demo/rest/customer/:id', {
+                id: '@id'
+            }, {
+                update: {
+                    method: 'PUT'
+                }
+            });
 
-      return Customer;
+        return Customer;
+    }).
+    factory('errorHttpInterceptor', function ($q, $location, $rootScope) {
+        return function (promise) {
+            return promise.then(function (response) {
+                return response;
+            }, function (response) {
+                if (response.status === 401) {
+                    $rootScope.$broadcast('event:loginRequired');
+                } else if (response.status >= 400 && response.status < 500) {
+                    // TODO: error service... see AngularJS book
+                    console.log('Server was unable to find what you were looking for... Sorry!!');
+                }
+                return $q.reject(response);
+            });
+        };
     });
+
+
+

@@ -1,76 +1,93 @@
 <!-- partial for the customer detail page for creating, updating and displaying customers -->
 
-<form class="form-horizontal">
-  <div>
-    <fieldset>
-      <legend data-ng-show="!!customer.id">
-        Edit: {{ customer.firstName }} {{ customer.lastName  }} <span class="subtle_text">#{{customer.id}},
+<div class="container">
+
+
+    <form class="form-horizontal">
+        <div>
+            <fieldset>
+                <legend data-ng-show="!!customer.id">
+                    Edit: {{ customer.firstName }} {{ customer.lastName }} <span class="subtle_text">#{{customer.id}},
           created {{ customer.createDate | date }}</span>
-      </legend>
-      
-      <legend data-ng-show="!customer.id">
-        Create Customer
-      </legend>
+                </legend>
 
-      <div class="control-group">
-        <label class="control-label">First name</label>
-        <div class="controls">
-          <input type="text" data-ng-model="customer.firstName"
-            class="span3">
+                <legend data-ng-show="!customer.id">
+                    Create Customer
+                </legend>
+
+                <div class="control-group">
+                    <label class="control-label">First name</label>
+
+                    <div class="controls">
+                        <input type="text" data-ng-model="customer.firstName"
+                               class="span3">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="inputName">Last name</label>
+
+                    <div class="controls">
+                        <input id="inputName" type="text"
+                               data-ng-model="customer.lastName" class="span3">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Sex</label>
+
+                    <div class="controls">
+                        <label class="radio"><input type="radio"
+                                                    name="sexRadio" ng-model="customer.sex"
+                                                    value="unknown">unknown</label>
+                        <label class="radio"><input type="radio"
+                                                    name="sexRadio" ng-model="customer.sex" value="male">male</label>
+                        <label class="radio"><input type="radio"
+                                                    name="sexRadio" ng-model="customer.sex"
+                                                    value="female">female</label>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">E-Mail / Login</label>
+
+                    <div class="controls">
+                        <input type="text" data-ng-model="customer.email"
+                               class="span3">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Fon</label>
+
+                    <div class="controls">
+                        <input type="text" data-ng-model="customer.phone"
+                               class="span3">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Company</label>
+
+                    <div class="controls">
+                        <input type="text" data-ng-model="customer.company.name"
+                               class="span3">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="controls">
+                        <button data-ng-click="save()" class="btn btn-primary">Save</button>
+                        <a href="#/list" class="btn">Cancel</a>
+                    </div>
+                </div>
+
+            </fieldset>
         </div>
-      </div>
+    </form>
 
-      <div class="control-group">
-        <label class="control-label" for="inputName">Last name</label>
-        <div class="controls">
-          <input id="inputName" type="text"
-            data-ng-model="customer.lastName" class="span3">
-        </div>
-      </div>
-
-      <div class="control-group">
-        <label class="control-label">Sex</label>
-        <div class="controls">
-          <label class="radio"><input type="radio"
-            name="sexRadio" ng-model="customer.sex" value="unknown">unknown</label>
-          <label class="radio"><input type="radio"
-            name="sexRadio" ng-model="customer.sex" value="male">male</label>
-          <label class="radio"><input type="radio"
-            name="sexRadio" ng-model="customer.sex" value="female">female</label>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <label class="control-label">E-Mail / Login</label>
-        <div class="controls">
-          <input type="text" data-ng-model="customer.email"
-            class="span3">
-        </div>
-      </div>
-
-      <div class="control-group">
-        <label class="control-label">Fon</label>
-        <div class="controls">
-          <input type="text" data-ng-model="customer.phone"
-            class="span3">
-        </div>
-      </div>
-
-      <div class="control-group">
-        <label class="control-label">Company</label>
-        <div class="controls">
-          <input type="text" data-ng-model="customer.company.name"
-            class="span3">
-        </div>
-      </div>
-
-      <div class="control-group">
-        <div class="controls">
-          <button data-ng-click="save()" class="btn btn-primary">Save</button>
-          <a href="#/list" class="btn">Cancel</a>
-        </div>
-      </div>
-
-    </fieldset>
-  </div>
-</form>
+    <hr/>
+    <div>
+        CRM Demo: v<span app-version></span>
+    </div>
+</div>

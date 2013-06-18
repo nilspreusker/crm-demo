@@ -1,0 +1,39 @@
+<div class="container">
+    <form class="form-horizontal">
+
+        <fieldset>
+            <legend>Sign In</legend>
+            <div class="control-group">
+                <label class="control-label" for="inputUsername">Username</label>
+
+                <div class="controls">
+                    <input id="inputUsername" ng-model="credentials.username" type="text" placeholder="Username"/>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="inputPassword">Password</label>
+
+                <div class="controls">
+                    <input id="inputPassword" ng-model="credentials.password" type="password" placeholder="Password"/>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+                    <!--<label class="checkbox">-->
+                    <!--<input type="checkbox"> Remember me-->
+                    <!--</label>-->
+                    <button ng-click="login()" class="btn">Sign In</button>
+                </div>
+            </div>
+        </fieldset>
+
+
+    </form>
+
+    <hr/>
+    <div>
+        CRM Demo: v<span app-version></span>
+    </div>
+</div>
