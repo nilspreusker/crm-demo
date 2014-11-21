@@ -13,3 +13,6 @@ target
 .classpath
 
 src/main/webapp/app/.DS_Store
+
+.idea
+*.iml
