@@ -10,4 +10,6 @@ replaced with the path to your application server. Afterwards you can just run
 Ant, which will in turn execute the maven build and deploy the application for 
 you. 
 
-Have fun! 
+Have fun!
+
+[![Build Status](https://travis-ci.org/nilspreusker/crm-demo.svg?branch=master)](https://travis-ci.org/nilspreusker/crm-demo)
